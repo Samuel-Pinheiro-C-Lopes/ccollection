@@ -12,7 +12,12 @@
 
 #pragma region DEFINITIONS
 
-    #define __MAX_INI (8)
+    // initial limit for the size of the collection
+    #define __LIM_INI (8)
+
+    // _Item.active
+    #define __I_INACTIVE ('X')
+    #define __I_ACTIVE ('O')
  
 #pragma endregion
 
@@ -27,9 +32,6 @@
         // collection
         typedef struct collection Collection; // public
         typedef struct __collection __Collection; // private
-
-        // item
-        typedef struct _item _Item; // private
 
     #pragma endregion
     
@@ -49,6 +51,23 @@
 
 ///////////////////////////////////
 
+#pragma region ITEM 
+
+    /////////////////////////////////// 
+    
+    #pragma region typedef 
+
+        // item
+        typedef struct __item __Item; // private
+
+    #pragma endregion
+
+    ///////////////////////////////////
+
+#pragma endregion
+
+///////////////////////////////////
+
 #pragma region FUNCTIONS
     
     ///////////////////////////////////
@@ -56,11 +75,11 @@
     #pragma region crud
 
         // creation of an item and it's addition to the colleciton
-        int newItem(Collection* const collection, char* pkey, ...);
+        int addNewItem(Collection   *const collection, void *const content, char* pkey, ...);
         // update an item of a collection
-        int updItem(Collection* const collection, char* pkey, void* updatedContent);
+        int updItem(Collection *const collection, char* pkey, void* updatedContent);
         // remove an item from a collection
-        int remItem(Collection* const collection, char* pkey);
+        int remItem(Collection *const collection, char* pkey);
 
     #pragma endregion
     
@@ -88,10 +107,10 @@
     #pragma region base
     
         // creates a new collection with a specific number of search keys
-        Collection* NewCollection(int numKeys);
+        Collection* newCollection(int numSrchKeys);
 
         // destroys a collection
-        Collection* DstrCollection(Collection* collection);
+        Collection* dstrCollection(Collection* collection);
 
     #pragma endregion
     
