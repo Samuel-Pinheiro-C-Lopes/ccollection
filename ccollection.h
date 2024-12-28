@@ -18,6 +18,9 @@
     // _Item.active
     #define __I_INACTIVE ('X')
     #define __I_ACTIVE ('O')
+
+    // maximum name for primary key
+    #define __MAX_NAME (255)
  
 #pragma endregion
 
